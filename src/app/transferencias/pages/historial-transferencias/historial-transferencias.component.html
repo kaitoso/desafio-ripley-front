@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row mb-5">
+    <h1>Historial</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-3">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre Destinatario</th>
+            <th>RUT</th>
+            <th>Banco</th>
+            <th>tipo de Cuenta</th>
+            <th>Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transferencia of transferencias" class="table-active">
+            <td>{{ transferencia.nombre }}</td>
+            <td>{{ transferencia.rut }}</td>
+            <td>{{ transferencia.banco_destino }}</td>
+            <td>{{ transferencia.tipo_cuenta }}</td>
+            <td>{{ transferencia.monto | currency: "CLP" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

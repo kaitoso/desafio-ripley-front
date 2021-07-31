@@ -1,0 +1,96 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="row">
+    <div class="col-12 text-center">
+      <figure class="figure">
+        <img
+          [style.width.px]="anchoLogo"
+          src="../../../../assets/img/register.png"
+        />
+      </figure>
+    </div>
+    <form
+      (ngSubmit)="registrar(registroFrom)"
+      #registroFrom="ngForm"
+      autocomplete="off"
+    >
+      <div class="col-12 mb-3">
+        <label for="name" class="form-label">Nombre:</label>
+
+        <input
+          type="name"
+          class="form-control"
+          id="name"
+          name="name"
+          placeholder="Ingrese su nombre..."
+          ngModel
+          required
+        />
+        <span
+          *ngIf="
+            registroFrom.controls.name?.invalid &&
+            registroFrom.controls.name?.touched
+          "
+          class="form-text text-danger"
+        >
+          El campo Nombre es requerido
+        </span>
+      </div>
+      <div class="col-12 mb-3">
+        <label for="email" class="form-label">Correo Electrónico:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Ingrese un correo electronico válido..."
+          ngModel
+          required
+        />
+        <span
+          *ngIf="
+            registroFrom.controls.email?.invalid &&
+            registroFrom.controls.email?.touched
+          "
+          class="form-text text-danger"
+        >
+          El campo email es requerido
+        </span>
+      </div>
+      <div class="col-12 mb-3">
+        <label for="password" class="form-label">Contraseña:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Ingrese Su contraseña..."
+          ngModel
+          required
+        />
+        <span
+          *ngIf="
+            registroFrom.controls.password?.invalid &&
+            registroFrom.controls.password?.touched
+          "
+          class="form-text text-danger"
+        >
+          Debe ingresar una contraseña
+        </span>
+      </div>
+
+      <div class="col-12 text-center">
+        <button
+          type="submit"
+          [style.width.px]="btnAncho"
+          class="btn btn-primary"
+          [disabled]="!registroFrom.valid"
+        >
+          Registrar
+        </button>
+      </div>
+      <div class="col-12 text-center mt-4">
+        <a routerLink="/auth/login">¿Ya tienes una cuenta?</a>
+      </div>
+    </form>
+  </div>
+</div>

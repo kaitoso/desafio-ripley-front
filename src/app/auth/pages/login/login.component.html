@@ -1,0 +1,69 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="row">
+    <div class="col-12 text-center">
+      <figure class="figure">
+        <img
+          [style.width.px]="anchoLogo"
+          src="../../../../assets/img/login.png"
+        />
+      </figure>
+    </div>
+    <form (ngSubmit)="login(loginFrom)" #loginFrom="ngForm">
+      <div class="col-12 mb-4">
+        <label for="email" class="form-label">Correo Electrónico:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Ingrese un correo electronico válido..."
+          ngModel
+          required
+        />
+        <span
+          *ngIf="
+            loginFrom.controls.email?.invalid &&
+            loginFrom.controls.email?.touched
+          "
+          class="form-text text-danger"
+        >
+          El campo email es requerido
+        </span>
+      </div>
+      <div class="col-12 mb-3">
+        <label for="password" class="form-label">Contraseña:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Ingrese Su contraseña..."
+          ngModel
+          required
+        />
+        <span
+          *ngIf="
+            loginFrom.controls.password?.invalid &&
+            loginFrom.controls.password?.touched
+          "
+          class="form-text text-danger"
+        >
+          Debe ingresar una contraseña
+        </span>
+      </div>
+      <div class="col-12 text-center">
+        <button
+          type="submit"
+          [style.width.px]="btnAncho"
+          class="btn btn-primary"
+          [disabled]="!loginFrom.valid"
+        >
+          Entrar
+        </button>
+      </div>
+      <div class="col-12 text-center mt-5">
+        <a routerLink="/auth/registro">¿No estás registrado?</a>
+      </div>
+    </form>
+  </div>
+</div>

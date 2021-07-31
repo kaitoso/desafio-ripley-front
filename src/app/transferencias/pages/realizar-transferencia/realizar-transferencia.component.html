@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row mb-5">
+    <h1>Transferir</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-md-6 mb-3">
+      <label for="exampleDataList" class="form-label"
+        >Buscar Destinatario</label
+      >
+      <input
+        class="form-control"
+        list="datalistOptions"
+        id="exampleDataList"
+        placeholder="Escriba nombre, correo o rut a buscar"
+        (change)="encuentraDestinatario($event)"
+      />
+      <datalist id="datalistOptions">
+        <option
+          *ngFor="let destinatario of destinatarios"
+          [value]="
+            destinatario.nombre +
+            '|' +
+            destinatario.rut +
+            '|' +
+            destinatario.banco_destino
+          "
+        >
+          {{ destinatario.rut }} - {{ destinatario.email }}
+        </option>
+      </datalist>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h5>Detalle del destinatario</h5>
+    </div>
+    <div class="col-12">Nombre: {{ nombre }}</div>
+    <div class="col-12">Correo: {{ email }}</div>
+    <div class="col-12">Banco: {{ banco_destino }}</div>
+    <div class="col-12">Tipo de Cuenta: {{ tipo_cuenta }}</div>
+  </div>
+  <form
+    [formGroup]="transferenciaForm"
+    (ngSubmit)="transferir()"
+    autocomplete="off"
+  >
+    <div class="row mt-5">
+      <div class="col-12 col-md-6 mb-3">
+        <label for="monto" class="form-label">Monto</label>
+        <input
+          type="number"
+          class="form-control"
+          id="monto"
+          name="monto"
+          min="0"
+          formControlName="monto"
+          placeholder="Ingrese monto a transferir ..."
+        />
+        <span
+          *ngIf="
+            transferenciaForm.controls.monto.errors &&
+            transferenciaForm.controls.monto.touched
+          "
+          class="form-text text-danger"
+        >
+          Debe engresar un monto mayor a 0
+        </span>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Transferir</button>
+      </div>
+    </div>
+  </form>
+</div>
